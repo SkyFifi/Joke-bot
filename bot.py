@@ -3,7 +3,7 @@ from discord.ext import commands
 import os
 import requests
 
-TOKEN = ''
+TOKEN = '' # Paste token here
 
 bot = commands.Bot(command_prefix = '.')
 
@@ -17,6 +17,7 @@ def tell_joke():
 async def on_ready():
 	print("Let's go!")
 
+# Prints the joke
 @bot.event
 async def on_message(message):
 	channel = message.channel
