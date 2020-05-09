@@ -13,11 +13,16 @@ def tell_joke():
 	data = response.json()
 	return str(data['joke'])
 
+def get_meme():
+	url = 'https://meme-api.herokuapp.com/gimme'
+	response = requests.get(url, headers={"Accept": "application/json"})
+	data = response.json()
+	return str((data['url']))
+
 @bot.event
 async def on_ready():
 	print("Let's go!")
 
-# Prints the joke
 @bot.event
 async def on_message(message):
 	channel = message.channel
@@ -25,6 +30,13 @@ async def on_message(message):
 	if content == '.joke':
 		joke = tell_joke()
 		await channel.send(joke)
+	
+	if content.lower() == 'go corona':
+		await channel.send('Corona Go!')
+
+	if content == '.meme':
+		meme = get_meme()
+		await channel.send(meme)
 
 bot.run(TOKEN)
 
