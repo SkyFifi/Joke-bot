@@ -48,7 +48,7 @@ async def on_message(message):
 		meme = get_meme()
 		await channel.send(meme)
 		
-	if content == '.corona-update':
+	if content == '.corona':
 		update = get_corona_update()
 		await channel.send(update)
 		
