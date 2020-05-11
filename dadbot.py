@@ -19,6 +19,17 @@ def get_meme():
 	data = response.json()
 	return str((data['url']))
 
+def get_corona_update():
+	url = 'https://api.covid19india.org/data.json?'
+	response = requests.get(url)
+	data = response.json()
+	return data
+	active = str(int(data["statewise"][0]["active"]))
+	confirmed = str(int(data["statewise"][0]["confirmed"]))
+	deaths =  str(int(data["statewise"][0]["deaths"]))
+	message = "Cofirmed cases:" + confirmed + "active:" + active + "deaths:" + deaths
+	return(str(message))
+
 @bot.event
 async def on_ready():
 	print("Let's go!")
@@ -37,6 +48,12 @@ async def on_message(message):
 	if content == '.meme':
 		meme = get_meme()
 		await channel.send(meme)
+		
+	if content == '.corona-update':
+		update = get_corona_update()
+		await channel.send(update)
+		
+		
 
 bot.run(TOKEN)
 
