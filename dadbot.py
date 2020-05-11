@@ -23,7 +23,6 @@ def get_corona_update():
 	url = 'https://api.covid19india.org/data.json?'
 	response = requests.get(url)
 	data = response.json()
-	return data
 	active = str(int(data["statewise"][0]["active"]))
 	confirmed = str(int(data["statewise"][0]["confirmed"]))
 	deaths =  str(int(data["statewise"][0]["deaths"]))
